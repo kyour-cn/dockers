@@ -19,8 +19,8 @@ RUN pecl install event redis && docker-php-ext-enable redis
 RUN echo "extension=event" >> /usr/local/etc/php/conf.d/docker-php-ext-sockets.ini
 
 #安装composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 #设置工作目录
 WORKDIR /var/www
