@@ -51,7 +51,7 @@ docker network {ls rm}
 ```text
 nginx容器
 docker run -itd -p 80:80 -p 443:443 --network=net-sword --ip=172.10.0.10 \
--v /data:/data --name="nginx-sword" kyour/nginx-sword
+-v /data:/data -v /data/nginx:/etc/nginx --name="nginx-sword" kyour/nginx-sword
 
 php-fpm容器
 docker run -itd -p 9000:9000 --network=net-sword --ip=172.10.0.11 -v /data:/data --name="php-sword" kyour/php-sword
