@@ -7,10 +7,15 @@ RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list && \
 
 #安装依赖
 RUN apt-get update && \
-    apt-get install -y openssl libssl-dev libevent-dev libonig-dev zlib1g-dev libpng-dev libzip-dev
+    apt-get install -y openssl libssl-dev libevent-dev libonig-dev zlib1g-dev libpng-dev libzip-dev && apt-get clean
 
 #安装扩展
-RUN docker-php-ext-install sockets pcntl bcmath mbstring gd zip pdo_mysql mysqli
+RUN docker-php-ext-install sockets pcntl bcmath mbstring zip pdo_mysql mysqli
+
+#安装GD库
+RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && apt-get clean
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+        && docker-php-ext-install -j$(nproc) gd
 
 #PECL安装拓展
 RUN pecl install event redis && docker-php-ext-enable redis
