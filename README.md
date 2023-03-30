@@ -55,6 +55,7 @@ docker run -itd -p 80:80 -p 443:443 --network=net-sword --ip=172.10.0.10 \
 
 php-fpm容器
 docker run -itd -p 9000:9000 --network=net-sword --ip=172.10.0.11 -v /data:/data --name="php-sword" kyour/php-sword
+docker run -itd --network=net-sword --ip=172.10.0.22 -v /data:/data --name="php81" php81
 
 mysql容器
 docker run -itd -p 3306:3306 -e MYSQL_ROOT_PASSWORD=168168 --privileged=true \
