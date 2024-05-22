@@ -7,7 +7,7 @@ RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list && \
 
 #安装依赖
 RUN apt-get update && \
-    apt-get install -y openssl libssl-dev libevent-dev libonig-dev zlib1g-dev libpng-dev
+    apt-get install -y openssl libssl-dev libevent-dev libonig-dev zlib1g-dev libpng-dev libzip-dev && apt-get clean
 
 #安装扩展
 RUN docker-php-ext-install sockets pcntl bcmath mbstring zip gd pdo_mysql mysqli
