@@ -27,6 +27,9 @@ RUN docker-php-ext-install -j$(nproc) sockets pcntl bcmath mbstring gd pdo_mysql
   
 #PECL安装拓展  
 RUN pecl install event redis && docker-php-ext-enable redis  
-  
+
+#安装composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 #设置工作目录  
 WORKDIR /var/www
